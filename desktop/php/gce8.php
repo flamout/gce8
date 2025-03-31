@@ -131,7 +131,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
 									<div class="col-xs-11 col-sm-7">
 										<input type="numeric" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="duree_impulsion" placeholder=0.5 />
 									</div>
-									<label class="col-sm-3 control-label">{{Nombre de relais (2 ou 4 ou 8)}}</label>
+									<label class="col-sm-3 control-label">{{Nombre de relais (2 ou 4 ou 8)}}
+										<sup><i class="fas fa-question-circle" title="{{Les cartes 2 et 4 relais ne sont pas commandées comme les cartes 8 relais}}"></i></sup>
+									</label>
 									<div class="col-xs-11 col-sm-7">
 										<input type="numeric" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="nb_relais" placeholder=8 />
 									</div>
