@@ -640,10 +640,10 @@ class gce8 extends eqLogic {
 
 			if ($action=="off") {
 				if ($nbrelais=="8") {
-					$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
+					$mess='echo RLY'.$num_relais.'0 >'.$port_carte; 
 				}
 				else {
-					$mess='echo S'.$num_relais.'1 >'.$port_carte;
+					$mess='echo S'.$num_relais.'0 >'.$port_carte;
 				}
 				exec ($mess);
 			}
@@ -658,10 +658,10 @@ class gce8 extends eqLogic {
 				exec ($mess);
 				usleep($duree_imp*1000000);
 				if ($nbrelais=="8") {
-					$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
+					$mess='echo RLY'.$num_relais.'0 >'.$port_carte; 
 				}
 				else {
-					$mess='echo S'.$num_relais.'1 >'.$port_carte;
+					$mess='echo S'.$num_relais.'0 >'.$port_carte;
 				}
 				exec ($mess);
 			}
