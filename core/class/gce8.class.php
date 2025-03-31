@@ -99,12 +99,7 @@ class gce8 extends eqLogic {
  // Fonction exécutée automatiquement avant la sauvegarde (création ou mise à jour) de l'équipement 
     public function preSave() {
 
-    }
-
- // Fonction exécutée automatiquement après la sauvegarde (création ou mise à jour) de l'équipement 
-    public function postSave() {
-
-        $nmrel1 = $this->getconfiguration('nmrelais1');
+		$nmrel1 = $this->getconfiguration('nmrelais1');
         if ($nmrel1 == "") {
           	$nmrel1 = "Relais 1";
         }
@@ -145,6 +140,12 @@ class gce8 extends eqLogic {
         $nm6 = 'Etat '.$nmrel6;
         $nm7 = 'Etat '.$nmrel7;
         $nm8 = 'Etat '.$nmrel8;
+
+    }
+
+ // Fonction exécutée automatiquement après la sauvegarde (création ou mise à jour) de l'équipement 
+    public function postSave() {
+
       
               $cmd_list = array(
 				'etr1' => array(
