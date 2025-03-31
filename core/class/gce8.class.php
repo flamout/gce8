@@ -536,7 +536,7 @@ class gce8 extends eqLogic {
 			// your linux serial device is /dev/ttyS0 for COM1, etc)
 			$serial->deviceSet($this->getconfiguration('port_carte'));
 			$nom_carte=$this->getconfiguration('name');
-			// We can change the baud rate, parity, length, stop bits, flow control
+			$nbrelais=$this->getconfiguration('nb_relais');// We can change the baud rate, parity, length, stop bits, flow control
 /*      	$serial->confBaudRate(9600);
 			$serial->confParity("none");
 			$serial->confCharacterLength(8);
@@ -548,7 +548,12 @@ class gce8 extends eqLogic {
 			do {
 
             // To write into
-            $serial->sendMessage("?RLY");
+            if ($nbrelais=="8") {
+				$serial->sendMessage("?RLY"); 
+			}
+			else {
+				$serial->sendMessage("?");
+			}
             // Or to read from
             sleep (0.200); 
             $read = $serial->readPort(10);
@@ -622,7 +627,7 @@ class gce8 extends eqLogic {
 			$nbrelais=$this->getconfiguration('nb_relais');
 
 			if ($action=="on") {
-				if ($nbrelais==8) {
+				if ($nbrelais=="8") {
 					$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
 				}
 				else {
@@ -633,7 +638,7 @@ class gce8 extends eqLogic {
 			}
 
 			if ($action=="off") {
-				if ($nbrelais==8) {
+				if ($nbrelais=="8") {
 					$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
 				}
 				else {
@@ -643,7 +648,7 @@ class gce8 extends eqLogic {
 			}
 
 			if ($action=="imp") {
-				if ($nbrelais==8) {
+				if ($nbrelais=="8") {
 					$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
 				}
 				else {
@@ -651,7 +656,7 @@ class gce8 extends eqLogic {
 				}
 				exec ($mess);
 				usleep($duree_imp*1000000);
-				if ($nbrelais==8) {
+				if ($nbrelais=="8") {
 					$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
 				}
 				else {
