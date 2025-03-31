@@ -214,7 +214,7 @@ class gce8 extends eqLogic {
 			$cmd->setType($cmd_info['type']);
 			$cmd->setSubType($cmd_info['subtype']);
 			$cmd->setEqLogic_id($this->getId());
-			$cmd->setEventOnly(1);
+		#	$cmd->setEventOnly(1);
 			$cmd->save();
 		}
       
