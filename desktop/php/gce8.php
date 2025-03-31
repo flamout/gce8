@@ -137,7 +137,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
 									<div class="col-xs-11 col-sm-7">
 										<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="nb_relais" placeholder="8" />
 									</div>
-									<label class="col-sm-3 control-label">{{Relais N° 1}}</label>
+									<label class="col-sm-3 control-label">{{Relais N° 1}}
+									<sup><i class="fas fa-question-circle" title="{{Laisser vide pour le nom par défaut}}"></i></sup>
+									</label>
 									<div class="col-xs-11 col-sm-7">
 										<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="nmrelais1" value ="Relais 1"/>
 									</div>
