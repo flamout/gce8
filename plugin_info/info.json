@@ -1,0 +1,20 @@
+{
+	"id" : "gce8",
+	"name" : "GCE8Relais",
+	"description" : "GCE8Relais pilote les cartes GCE 8relais sur port USB",
+	"licence" : "AGPL",
+	"author" : "flamout",
+	"require" : "4.0.1",
+	"category" : "home automation protocol",
+	"hasDependency" : false,
+	"hasOwnDeamon" : false,
+	"maxDependancyInstallTime" : 0,
+	"changelog" : "https://flamout.github.io/usb8relais/docs/#language#/changelog",
+	"documentation" : "https://flamout.github.io/usb8relais/docs/#language#/",
+	"link" : {
+		"forum":"Lien vers le forum",
+		"video" : "Lien vers une video"
+	},
+	"language" : ["fr_FR","en_US","de_DE","sp_SP"],
+	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile","v4"]
+}
