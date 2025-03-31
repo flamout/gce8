@@ -536,7 +536,8 @@ class gce8 extends eqLogic {
 			// your linux serial device is /dev/ttyS0 for COM1, etc)
 			$serial->deviceSet($this->getconfiguration('port_carte'));
 			$nom_carte=$this->getconfiguration('name');
-			$nbrelais=$this->getconfiguration('nb_relais');// We can change the baud rate, parity, length, stop bits, flow control
+			$nbrelais=$this->getconfiguration('nb_relais');
+			// We can change the baud rate, parity, length, stop bits, flow control
 /*      	$serial->confBaudRate(9600);
 			$serial->confParity("none");
 			$serial->confCharacterLength(8);
