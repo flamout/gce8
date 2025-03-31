@@ -619,23 +619,44 @@ class gce8 extends eqLogic {
 			$port_carte=$this->getconfiguration('port_carte');
 			$nom_carte=$this->getconfiguration('name');
 			$duree_imp=$this->getconfiguration('duree_impulsion');
+			$nbrelais=$this->getconfiguration('nb_relais');
 
 			if ($action=="on") {
-				$mess='echo RLY'.$num_relais.'1 >'.$port_carte;
+				if ($nbrelais==8) {
+					$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
+				}
+				else {
+					$mess='echo S'.$num_relais.'1 >'.$port_carte;
+				}
 				exec ($mess);
 			//print $mess.$port_carte;
 			}
 
 			if ($action=="off") {
-				$mess='echo RLY'.$num_relais.'0 >'.$port_carte;
+				if ($nbrelais==8) {
+					$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
+				}
+				else {
+					$mess='echo S'.$num_relais.'1 >'.$port_carte;
+				}
 				exec ($mess);
 			}
 
 			if ($action=="imp") {
-				$mess='echo RLY'.$num_relais.'1 >'.$port_carte;
+				if ($nbrelais==8) {
+					$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
+				}
+				else {
+					$mess='echo S'.$num_relais.'1 >'.$port_carte;
+				}
 				exec ($mess);
 				usleep($duree_imp*1000000);
-				$mess='echo RLY'.$num_relais.'0 >'.$port_carte;
+				if ($nbrelais==8) {
+					$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
+				}
+				else {
+					$mess='echo S'.$num_relais.'1 >'.$port_carte;
+				}
 				exec ($mess);
 			}
         
