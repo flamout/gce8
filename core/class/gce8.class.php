@@ -546,77 +546,116 @@ class gce8 extends eqLogic {
 			// Then we need to open it
 */        	$serial->deviceOpen();
 
-			do {
-
-            // To write into
+// To write into
             if ($nbrelais=="8") {
-				$serial->sendMessage("?RLY"); 
+				do {
+					$serial->sendMessage("?RLY"); 
+					sleep (0.200); 
+            		$read = $serial->readPort(10);
+            // If you want to change the configuration, the device must be closed
+					} while (substr($read,0,1)=="0" || substr($read,0,1)=="1");
+				$serial->deviceClose();
+
+				// traitement du retour
+				
+				$listecomm=eqlogic::byid($this->getid());
+				$nomcomm="";
+				foreach($listecomm->getcmd() as $comm) {
+					$nomcomm = $comm->getlogicalid();    
+					if ( $nomcomm =='etr1') {
+						$valrel=substr($read,1,1);
+						$comm->setvalue ($valrel);
+						$comm->save();
+						$comm->event($valrel);
+					}
+					if ( $nomcomm =='etr2') {
+						$valrel=substr($read,2,1);
+						$comm->setvalue ($valrel);
+						$comm->save();
+						$comm->event($valrel);
+					}
+					if ( $nomcomm =='etr3') {
+						$valrel=substr($read,3,1);
+						$comm->setvalue ($valrel);
+						$comm->save();
+						$comm->event($valrel);
+					}
+					if ( $nomcomm =='etr4') {
+						$valrel=substr($read,4,1);
+						$comm->setvalue ($valrel);
+						$comm->save();
+						$comm->event($valrel);
+					}
+					if ( $nomcomm =='etr5') {
+						$valrel=substr($read,5,1);
+						$comm->setvalue ($valrel);
+						$comm->save();
+						$comm->event($valrel);
+					}
+					if ( $nomcomm =='etr6') {
+						$valrel=substr($read,6,1);
+						$comm->setvalue ($valrel);
+						$comm->save();
+						$comm->event($valrel);
+					}
+					if ( $nomcomm =='etr7') {
+						$valrel=substr($read,7,1);
+						$comm->setvalue ($valrel);
+						$comm->save();
+						$comm->event($valrel);
+					}
+					if ( $nomcomm =='etr8') {
+						$valrel=substr($read,8,1);
+						$comm->setvalue ($valrel);
+						$comm->save();
+						$comm->event($valrel);
+					}
+				}     
+	
 			}
 			else {
-				$serial->sendMessage("?");
-			}
-            // Or to read from
-            sleep (0.200); 
-            $read = $serial->readPort(10);
+				do {
+					$serial->sendMessage("?"); 
+					sleep (0.200); 
+            		$read = $serial->readPort(10);
             // If you want to change the configuration, the device must be closed
-			}
-			while (substr($read,0,1)=="0" || substr($read,0,1)=="1");
-			$serial->deviceClose();
-
-			$listecomm=eqlogic::byid($this->getid());
-			$nomcomm="";
-			foreach($listecomm->getcmd() as $comm) {
-				$nomcomm = $comm->getlogicalid();    
-				if ( $nomcomm =='etr1') {
-					$valrel=substr($read,1,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
+					} while (substr($read,0,1)=="0" || substr($read,0,1)=="1" || substr($read,0,1)=="S");
+				$serial->deviceClose();
+			// traitement du retour
+				
+				$listecomm=eqlogic::byid($this->getid());
+				$nomcomm="";
+				foreach($listecomm->getcmd() as $comm) {
+					$nomcomm = $comm->getlogicalid();    
+					if ( $nomcomm =='etr1') {
+						$valrel=substr($read,1,1);
+						$comm->setvalue ($valrel);
+						$comm->save();
+						$comm->event($valrel)
+					}
+					if ( $nomcomm =='etr2') {
+						$valrel=substr($read,2,1);
+						$comm->setvalue ($valrel);
+						$comm->save();
+						$comm->event($valrel);
+					}
+					if ($nbrelais=="4") {
+						if ( $nomcomm =='etr3') {
+							$valrel=substr($read,3,1);
+							$comm->setvalue ($valrel);
+							$comm->save();
+							$comm->event($valrel);
+						}
+						if ( $nomcomm =='etr4') {
+							$valrel=substr($read,4,1);
+							$comm->setvalue ($valrel);
+							$comm->save();
+							$comm->event($valrel);
+						}
+					}
 				}
-				if ( $nomcomm =='etr2') {
-					$valrel=substr($read,2,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-				if ( $nomcomm =='etr3') {
-					$valrel=substr($read,3,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-				if ( $nomcomm =='etr4') {
-					$valrel=substr($read,4,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-				if ( $nomcomm =='etr5') {
-					$valrel=substr($read,5,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-				if ( $nomcomm =='etr6') {
-					$valrel=substr($read,6,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-				if ( $nomcomm =='etr7') {
-					$valrel=substr($read,7,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-				if ( $nomcomm =='etr8') {
-					$valrel=substr($read,8,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-			}     
-        }
+            // Or to read from
+            }
 		
 		
 		public function actionrelais ($action,$num_relais) {
