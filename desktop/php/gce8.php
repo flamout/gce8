@@ -108,6 +108,8 @@ $eqLogics = eqLogic::byType($plugin->getId());
 											echo '<label class="checkbox-inline">';
 											echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" />' . $value['name'];
 											echo '</label>';
+
+											
 										}
 										?>
 									</div>
