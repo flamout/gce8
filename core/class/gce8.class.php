@@ -914,8 +914,6 @@ class gce8Cmd extends cmd {
             
             break;
 
-
-
         }    
         
      }
