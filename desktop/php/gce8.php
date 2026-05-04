@@ -25,7 +25,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 				<span>{{Configuration}}</span>
 			</div>
 		</div>
-		<legend><i class="fas fa-table"></i> {{Mes cartes USB 8 relais}}</legend>
+		<legend><i class="fas fa-table"></i> {{Mes cartes USB relais}}</legend>
 		<!-- Champ de recherche -->
 		<div class="input-group" style="margin:5px;">
 			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchEqlogic"/>
