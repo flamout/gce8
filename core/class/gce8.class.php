@@ -547,7 +547,7 @@ class gce8 extends eqLogic {
 */        	$serial->deviceOpen();
 
 // To write into
-            if ($nbrelais=="8") {
+            if ($nbrelais=="8") { // traitement pour carte 8 relais
 				do {
 					$serial->sendMessage("?RLY"); 
 					sleep (0.200); 
