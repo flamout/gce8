@@ -1,4 +1,4 @@
-# usb8relais
+# GCE cartes usb 4 & 8 relais
  
  Plugin pour la gestion des cartes GCE 
 
