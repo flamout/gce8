@@ -614,7 +614,8 @@ class gce8 extends eqLogic {
 				}
 			}     
 		}
-		else {  // traitement pour la carte 4 relais 
+		
+		/* else {  // traitement pour la carte 4 relais 
 			do {
 				$serial->sendMessage("?"); 
 				sleep (0.200); 
@@ -653,7 +654,7 @@ class gce8 extends eqLogic {
 					$comm->event($valrel);
 				}
 			}
-		}
+		}*/
             // Or to read from
     }
 		
