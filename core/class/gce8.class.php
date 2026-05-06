@@ -106,6 +106,17 @@ class gce8 extends eqLogic {
 
  // Fonction exécutée automatiquement après la sauvegarde (création ou mise à jour) de l'équipement 
     public function postSave() {
+
+		$refresh = $this->getCmd(null, 'refresh');
+  		if (!is_object($refresh)) {
+   			$refresh = new vdmCmd();
+    		$refresh->setName(__('Rafraichir', __FILE__));
+  		}
+  		$refresh->setEqLogic_id($this->getId());
+  		$refresh->setLogicalId('refresh');
+  		$refresh->setType('action');
+  		$refresh->setSubType('other');
+  		$refresh->save();
 		/*
 
 		$nmrel1 = $this->getconfiguration('nmrelais1');
@@ -777,7 +788,7 @@ class gce8Cmd extends cmd {
             case 'refresh' :
     	    $eqLogic->majinfo();
             break; 
-            
+            /*
             case 'r1on' : 
             $eqLogic->actionrelais("on","1");    
             $eqLogic->majinfo();
@@ -921,7 +932,7 @@ class gce8Cmd extends cmd {
     	    $eqLogic->majinfo();
             
             break;
-
+			*/
         }    
         
 	}
