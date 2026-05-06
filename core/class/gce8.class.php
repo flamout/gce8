@@ -72,6 +72,189 @@ class gce8 extends eqLogic {
       }
     */
 
+	public function majinfo() {
+		
+		include "php_serial.class.php";      
+		// Let's start the class
+		$serial = new phpSerial;
+		// First we must specify the device. This works on both linux and windows (if
+		// your linux serial device is /dev/ttyS0 for COM1, etc)
+		$serial->deviceSet($this->getconfiguration('port_carte'));
+		$nom_carte=$this->getconfiguration('name');
+		$nbrelais=$this->getconfiguration('nb_relais');
+
+		/* We can change the baud rate, parity, length, stop bits, flow control
+            $serial->confBaudRate(9600);
+			$serial->confParity("none");
+			$serial->confCharacterLength(8);
+			$serial->confStopBits(1);
+			$serial->confFlowControl("none");
+			
+			Then we need to open it
+        */
+		$serial->deviceOpen();
+
+		 // To write into
+        if ($nbrelais=="8") { // traitement pour carte 8 relais 
+			do {
+				$serial->sendMessage("?RLY"); 
+				sleep (0.200); 
+            	$read = $serial->readPort(10);
+			} while (substr($read,0,1)=="0" || substr($read,0,1)=="1");
+           	// If you want to change the configuration, the device must be closed
+
+				
+			$serial->deviceClose();
+
+			// traitement du retour
+				
+			$listecomm=eqlogic::byid($this->getid());
+			$nomcomm="";
+			foreach($listecomm->getcmd() as $comm) {
+				$nomcomm = $comm->getlogicalid();    
+				if ( $nomcomm =='etr1') {
+					$valrel=substr($read,1,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel);
+				}
+				if ( $nomcomm =='etr2') {
+					$valrel=substr($read,2,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel);
+				}
+				if ( $nomcomm =='etr3') {
+					$valrel=substr($read,3,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel);
+				}
+				if ( $nomcomm =='etr4') {
+					$valrel=substr($read,4,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel);
+				}
+				if ( $nomcomm =='etr5') {
+					$valrel=substr($read,5,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel);
+				}
+				if ( $nomcomm =='etr6') {
+					$valrel=substr($read,6,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel);
+				}
+				if ( $nomcomm =='etr7') {
+					$valrel=substr($read,7,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel);
+				}
+				if ( $nomcomm =='etr8') {
+					$valrel=substr($read,8,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel);
+				}
+			}  
+		  
+		} else {  // traitement pour la carte 4 relais 
+			do {
+				$serial->sendMessage("?"); 
+				sleep (0.200); 
+           		$read = $serial->readPort(10);
+           		// If you want to change the configuration, the device must be closed
+			} while (substr($read,0,1)=="0" || substr($read,0,1)=="1" || substr($read,0,1)=="S");
+			$serial->deviceClose();
+			 // traitement du retour
+				
+			$listecomm=eqlogic::byid($this->getid());
+			$nomcomm="";
+			foreach($listecomm->getcmd() as $comm) {
+				$nomcomm = $comm->getlogicalid();    
+				if ( $nomcomm =='etr1') {
+					$valrel=substr($read,1,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel)
+				}
+				if ( $nomcomm =='etr2') {
+					$valrel=substr($read,2,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel);
+				}
+				if ( $nomcomm =='etr3') {
+					$valrel=substr($read,3,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel);
+				}
+				if ( $nomcomm =='etr4') {
+					$valrel=substr($read,4,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel);
+				}
+			}
+		}
+            // Or to read from
+	
+    }
+		
+		
+	public function actionrelais ($action,$num_relais) {
+        
+		$port_carte=$this->getconfiguration('port_carte');
+		$nom_carte=$this->getconfiguration('name');
+		$duree_imp=$this->getconfiguration('duree_impulsion');
+		$nbrelais=$this->getconfiguration('nb_relais');
+
+		if ($action=="on") {
+			if ($nbrelais=="8") {
+				$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
+			}
+			else {
+				$mess='echo S'.$num_relais.'1 >'.$port_carte;
+			}
+			exec ($mess);
+			//print $mess.$port_carte;
+		}
+
+		if ($action=="off") {
+			if ($nbrelais=="8") {
+				$mess='echo RLY'.$num_relais.'0 >'.$port_carte; 
+			}
+			else {
+				$mess='echo S'.$num_relais.'0 >'.$port_carte;
+			}
+			exec ($mess);
+		}
+
+		if ($action=="imp") {
+			if ($nbrelais=="8") {
+				$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
+			}
+			else {
+				$mess='echo S'.$num_relais.'1 >'.$port_carte;
+			}
+			exec ($mess);
+			usleep($duree_imp*1000000);
+			if ($nbrelais=="8") {
+				$mess='echo RLY'.$num_relais.'0 >'.$port_carte; 
+			}
+			else {
+				$mess='echo S'.$num_relais.'0 >'.$port_carte;
+			}
+			exec ($mess);
+		}
+       
+	
+	}
 
 
     /*     * *********************Méthodes d'instance************************* */
@@ -109,7 +292,7 @@ class gce8 extends eqLogic {
 
 		$refresh = $this->getCmd(null, 'refresh');
   		if (!is_object($refresh)) {
-   			$refresh = new vdmCmd();
+   			$refresh = new gce8Cmd();
     		$refresh->setName(__('Rafraichir', __FILE__));
   		}
   		$refresh->setEqLogic_id($this->getId());
@@ -426,8 +609,6 @@ class gce8 extends eqLogic {
 		$gce8cmd->setDisplay('generic_type','LIGHT_OFF');
 		$gce8cmd->save();
 
-
-
     	$gce8cmd = $this->getCmd(null, 'r1imp');
 		if (!is_object($gce8cmd)) {
 			$gce8cmd = new gce8cmd();
@@ -536,195 +717,12 @@ class gce8 extends eqLogic {
 		$refresh->setSubType('other');
 		$refresh->setOrder(99);
 		$refresh->save();
-
+*/
 		$this->majInfo();
 
-		*/
+		
     }
 		
-	public function majinfo() {
-		
-		include "php_serial.class.php";      
-		// Let's start the class
-		$serial = new phpSerial;
-		// First we must specify the device. This works on both linux and windows (if
-		// your linux serial device is /dev/ttyS0 for COM1, etc)
-		$serial->deviceSet($this->getconfiguration('port_carte'));
-		$nom_carte=$this->getconfiguration('name');
-		$nbrelais=$this->getconfiguration('nb_relais');
-
-		/* We can change the baud rate, parity, length, stop bits, flow control
-            $serial->confBaudRate(9600);
-			$serial->confParity("none");
-			$serial->confCharacterLength(8);
-			$serial->confStopBits(1);
-			$serial->confFlowControl("none");
-			
-			Then we need to open it
-        */
-		$serial->deviceOpen();
-
-		 // To write into
-        if ($nbrelais=="8") { // traitement pour carte 8 relais 
-			do {
-				$serial->sendMessage("?RLY"); 
-				sleep (0.200); 
-            	$read = $serial->readPort(10);
-			} while (substr($read,0,1)=="0" || substr($read,0,1)=="1");
-           	// If you want to change the configuration, the device must be closed
-
-				
-			$serial->deviceClose();
-
-			// traitement du retour
-				
-			$listecomm=eqlogic::byid($this->getid());
-			$nomcomm="";
-			foreach($listecomm->getcmd() as $comm) {
-				$nomcomm = $comm->getlogicalid();    
-				if ( $nomcomm =='etr1') {
-					$valrel=substr($read,1,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-				if ( $nomcomm =='etr2') {
-					$valrel=substr($read,2,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-				if ( $nomcomm =='etr3') {
-					$valrel=substr($read,3,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-				if ( $nomcomm =='etr4') {
-					$valrel=substr($read,4,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-				if ( $nomcomm =='etr5') {
-					$valrel=substr($read,5,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-				if ( $nomcomm =='etr6') {
-					$valrel=substr($read,6,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-				if ( $nomcomm =='etr7') {
-					$valrel=substr($read,7,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-				if ( $nomcomm =='etr8') {
-					$valrel=substr($read,8,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-			}  
-		  
-		} else {  // traitement pour la carte 4 relais 
-			do {
-				$serial->sendMessage("?"); 
-				sleep (0.200); 
-           		$read = $serial->readPort(10);
-           		// If you want to change the configuration, the device must be closed
-			} while (substr($read,0,1)=="0" || substr($read,0,1)=="1" || substr($read,0,1)=="S");
-			$serial->deviceClose();
-			 // traitement du retour
-				
-			$listecomm=eqlogic::byid($this->getid());
-			$nomcomm="";
-			foreach($listecomm->getcmd() as $comm) {
-				$nomcomm = $comm->getlogicalid();    
-				if ( $nomcomm =='etr1') {
-					$valrel=substr($read,1,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel)
-				}
-				if ( $nomcomm =='etr2') {
-					$valrel=substr($read,2,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-				if ( $nomcomm =='etr3') {
-					$valrel=substr($read,3,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-				if ( $nomcomm =='etr4') {
-					$valrel=substr($read,4,1);
-					$comm->setvalue ($valrel);
-					$comm->save();
-					$comm->event($valrel);
-				}
-			}
-		}
-            // Or to read from
-	
-    }
-		
-		
-	public function actionrelais ($action,$num_relais) {
-        
-		$port_carte=$this->getconfiguration('port_carte');
-		$nom_carte=$this->getconfiguration('name');
-		$duree_imp=$this->getconfiguration('duree_impulsion');
-		$nbrelais=$this->getconfiguration('nb_relais');
-
-		if ($action=="on") {
-			if ($nbrelais=="8") {
-				$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
-			}
-			else {
-				$mess='echo S'.$num_relais.'1 >'.$port_carte;
-			}
-			exec ($mess);
-			//print $mess.$port_carte;
-		}
-
-		if ($action=="off") {
-			if ($nbrelais=="8") {
-				$mess='echo RLY'.$num_relais.'0 >'.$port_carte; 
-			}
-			else {
-				$mess='echo S'.$num_relais.'0 >'.$port_carte;
-			}
-			exec ($mess);
-		}
-
-		if ($action=="imp") {
-			if ($nbrelais=="8") {
-				$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
-			}
-			else {
-				$mess='echo S'.$num_relais.'1 >'.$port_carte;
-			}
-			exec ($mess);
-			usleep($duree_imp*1000000);
-			if ($nbrelais=="8") {
-				$mess='echo RLY'.$num_relais.'0 >'.$port_carte; 
-			}
-			else {
-				$mess='echo S'.$num_relais.'0 >'.$port_carte;
-			}
-			exec ($mess);
-		}
-       
-	
-	}
 
     
  // Fonction exécutée automatiquement avant la suppression de l'équipement 
