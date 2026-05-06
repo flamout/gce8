@@ -77,6 +77,8 @@ class gce8 extends eqLogic {
     /*     * *********************Méthodes d'instance************************* */
     
  // Fonction exécutée automatiquement avant la création de l'équipement 
+
+ 
     public function preInsert() {
         
     }
@@ -104,6 +106,7 @@ class gce8 extends eqLogic {
 
  // Fonction exécutée automatiquement après la sauvegarde (création ou mise à jour) de l'équipement 
     public function postSave() {
+		/*
 
 		$nmrel1 = $this->getconfiguration('nmrelais1');
         if ($nmrel1 == "") {
@@ -525,10 +528,11 @@ class gce8 extends eqLogic {
 
 		$this->majInfo();
 
-    
+		*/
     }
 		
 	public function majinfo() {
+		
 		include "php_serial.class.php";      
 		// Let's start the class
 		$serial = new phpSerial;
@@ -537,14 +541,16 @@ class gce8 extends eqLogic {
 		$serial->deviceSet($this->getconfiguration('port_carte'));
 		$nom_carte=$this->getconfiguration('name');
 		$nbrelais=$this->getconfiguration('nb_relais');
-		// We can change the baud rate, parity, length, stop bits, flow control
-        /* $serial->confBaudRate(9600);
+
+		/* We can change the baud rate, parity, length, stop bits, flow control
+            $serial->confBaudRate(9600);
 			$serial->confParity("none");
 			$serial->confCharacterLength(8);
 			$serial->confStopBits(1);
 			$serial->confFlowControl("none");
-			// Then we need to open it
-        */ 
+			
+			Then we need to open it
+        */
 		$serial->deviceOpen();
 
 		 // To write into
@@ -553,12 +559,13 @@ class gce8 extends eqLogic {
 				$serial->sendMessage("?RLY"); 
 				sleep (0.200); 
             	$read = $serial->readPort(10);
-            	// If you want to change the configuration, the device must be closed
 			} while (substr($read,0,1)=="0" || substr($read,0,1)=="1");
+           	// If you want to change the configuration, the device must be closed
+
 				
 			$serial->deviceClose();
 
-				// traitement du retour
+			// traitement du retour
 				
 			$listecomm=eqlogic::byid($this->getid());
 			$nomcomm="";
@@ -612,10 +619,9 @@ class gce8 extends eqLogic {
 					$comm->save();
 					$comm->event($valrel);
 				}
-			}     
-		}
-		
-		/* else {  // traitement pour la carte 4 relais 
+			}  
+		  
+		} else {  // traitement pour la carte 4 relais 
 			do {
 				$serial->sendMessage("?"); 
 				sleep (0.200); 
@@ -654,14 +660,14 @@ class gce8 extends eqLogic {
 					$comm->event($valrel);
 				}
 			}
-		}*/
+		}
             // Or to read from
+	
     }
 		
 		
 	public function actionrelais ($action,$num_relais) {
         
-
 		$port_carte=$this->getconfiguration('port_carte');
 		$nom_carte=$this->getconfiguration('name');
 		$duree_imp=$this->getconfiguration('duree_impulsion');
@@ -706,7 +712,7 @@ class gce8 extends eqLogic {
 			exec ($mess);
 		}
        
-  
+	
 	}
 
     
@@ -765,6 +771,7 @@ class gce8Cmd extends cmd {
 
   // Exécution d'une commande  
     public function execute($_options = array()) {
+
 		$eqLogic = $this->getEqLogic();
         switch ($this->getlogicalid()) {
             case 'refresh' :
