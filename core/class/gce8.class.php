@@ -399,6 +399,12 @@ class gce8 extends eqLogic {
       
      // commandes ON
 
+    // Affectation des noms des relais 
+    $nmrel1 = $this->getconfiguration('nmrelais1');
+    if ($nmrel1 == "") {
+      $nmrel1 = "Relais 1";
+    }
+
     $gce8cmd = $this->getCmd(null, 'r1on');
 		if (!is_object($gce8cmd)) {
 			$gce8cmd = new gce8cmd();
