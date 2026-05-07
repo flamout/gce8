@@ -331,7 +331,7 @@ class gce8 extends eqLogic {
     log::add ('gce8','info',$nmrel8);
     log::add ('gce8','info',$por);
     log::add ('gce8','info',$duree);  
-    log::add('gce8','info',$nbrel);
+    log::add ('gce8','info',$nbrel);
 
     
     //if ($nmrel1 == "") {
