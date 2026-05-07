@@ -323,7 +323,7 @@ class gce8 extends eqLogic {
    
       
     // Affectation des noms des relais 
-    $nmrel1 = $this->getconfiguration('nmrelais1');
+    $nmrel1 = $this->getconfiguration($key = 'nmrelais1');
     //if ($nmrel1 == "") {
     //  $nmrel1 = "Relais 1";
    // }
