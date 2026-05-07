@@ -337,6 +337,27 @@ class gce8 extends eqLogic {
     if ($nmrel1 == "") {
       $nmrel1 = "Relais 1";
     }
+    if ($nmrel2 == "") {
+      $nmrel2 = "Relais 2";
+    }
+    if ($nmrel3 == "") {
+      $nmrel3 = "Relais 3";
+    }
+    if ($nmrel4 == "") {
+      $nmrel4 = "Relais 4";
+    }
+    if ($nmrel5 == "") {
+      $nmrel5 = "Relais 5";
+    }
+    if ($nmrel6 == "") {
+      $nmrel6 = "Relais 6";
+    }
+    if ($nmrel7 == "") {
+      $nmrel7 = "Relais 7";
+    }
+    if ($nmrel8 == "") {
+      $nmrel8 = "Relais 8";
+    }
 
    // test des variables 
 
