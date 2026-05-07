@@ -179,7 +179,7 @@ class gce8 extends eqLogic {
     log::add ('gce8','info',$duree);  
     log::add ('gce8','info',$nbrel);
 
-
+     // commande Refresh
 
     $refresh = $this->getCmd(null, 'refresh');
     if (!is_object($refresh)) {
@@ -192,120 +192,99 @@ class gce8 extends eqLogic {
     $refresh->setSubType('other');
     $refresh->save();
 
-   
-      
-
      // commandes ON
 
     $gce8cmd = $this->getCmd(null, 'r1on');
 		if (!is_object($gce8cmd)) {
 			$gce8cmd = new gce8cmd();
         }
-    //log::add ('gce8','info',$nmrel1);
-    
-    //log::add ('gce8','info',$nmrel1);
-    $gce8cmd->setName(__($nmrel1.' ON', __FILE__));
+        $gce8cmd->setName(__($nmrel1.' ON', __FILE__));
 		$gce8cmd->setLogicalId('r1on');
-	  $gce8cmd->setEqLogic_id($this->getId());
+	    $gce8cmd->setEqLogic_id($this->getId());
 		$gce8cmd->setType('action');
 		$gce8cmd->setSubType('other');	
 		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
 		$gce8cmd->save();
 
-    $gce8cmd = $this->getCmd(null, 'r2on');
+        $gce8cmd = $this->getCmd(null, 'r2on');
 		if (!is_object($gce8cmd)) {
 			$gce8cmd = new gce8cmd();
         }
-    //log::add ('gce8','info',$nmrel1);
-    
-    //log::add ('gce8','info',$nmrel1);
-    $gce8cmd->setName(__($nmrel2.' ON', __FILE__));
+        $gce8cmd->setName(__($nmrel2.' ON', __FILE__));
 		$gce8cmd->setLogicalId('r2on');
-	  $gce8cmd->setEqLogic_id($this->getId());
+	    $gce8cmd->setEqLogic_id($this->getId());
 		$gce8cmd->setType('action');
 		$gce8cmd->setSubType('other');	
 		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
 		$gce8cmd->save();
 
-    $gce8cmd = $this->getCmd(null, 'r3on');
+        $gce8cmd = $this->getCmd(null, 'r3on');
 		if (!is_object($gce8cmd)) {
 			$gce8cmd = new gce8cmd();
         }
-    //log::add ('gce8','info',$nmrel1);
-    
-    //log::add ('gce8','info',$nmrel1);
-    $gce8cmd->setName(__($nmrel3.' ON', __FILE__));
+        $gce8cmd->setName(__($nmrel3.' ON', __FILE__));
 		$gce8cmd->setLogicalId('r3on');
-	  $gce8cmd->setEqLogic_id($this->getId());
+	    $gce8cmd->setEqLogic_id($this->getId());
 		$gce8cmd->setType('action');
 		$gce8cmd->setSubType('other');	
 		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
 		$gce8cmd->save();
 
-    $gce8cmd = $this->getCmd(null, 'r4on');
+        $gce8cmd = $this->getCmd(null, 'r4on');
 		if (!is_object($gce8cmd)) {
 			$gce8cmd = new gce8cmd();
         }
-    //log::add ('gce8','info',$nmrel1);
-    
-    //log::add ('gce8','info',$nmrel1);
-    $gce8cmd->setName(__($nmrel4.' ON', __FILE__));
+        $gce8cmd->setName(__($nmrel4.' ON', __FILE__));
 		$gce8cmd->setLogicalId('r4on');
-	  $gce8cmd->setEqLogic_id($this->getId());
+	    $gce8cmd->setEqLogic_id($this->getId());
 		$gce8cmd->setType('action');
 		$gce8cmd->setSubType('other');	
 		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
 		$gce8cmd->save();
 
-    $gce8cmd = $this->getCmd(null, 'r5on');
+        $gce8cmd = $this->getCmd(null, 'r5on');
 		if (!is_object($gce8cmd)) {
 			$gce8cmd = new gce8cmd();
         }
-    //log::add ('gce8','info',$nmrel1);
-    
-    //log::add ('gce8','info',$nmrel1);
-    $gce8cmd->setName(__($nmrel5.' ON', __FILE__));
+        $gce8cmd->setName(__($nmrel5.' ON', __FILE__));
 		$gce8cmd->setLogicalId('r5on');
-	  $gce8cmd->setEqLogic_id($this->getId());
+	    $gce8cmd->setEqLogic_id($this->getId());
 		$gce8cmd->setType('action');
 		$gce8cmd->setSubType('other');	
 		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
 		$gce8cmd->save();
 
-    $gce8cmd = $this->getCmd(null, 'r6on');
+        $gce8cmd = $this->getCmd(null, 'r6on');
 		if (!is_object($gce8cmd)) {
 			$gce8cmd = new gce8cmd();
         }
-    //log::add ('gce8','info',$nmrel1);
-    
-    //log::add ('gce8','info',$nmrel1);
-    $gce8cmd->setName(__($nmrel6.' ON', __FILE__));
+        $gce8cmd->setName(__($nmrel6.' ON', __FILE__));
 		$gce8cmd->setLogicalId('r6on');
-	  $gce8cmd->setEqLogic_id($this->getId());
+	    $gce8cmd->setEqLogic_id($this->getId());
 		$gce8cmd->setType('action');
 		$gce8cmd->setSubType('other');	
 		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
 		$gce8cmd->save();
 
-    $gce8cmd = $this->getCmd(null, 'r7on');
+        $gce8cmd = $this->getCmd(null, 'r7on');
 		if (!is_object($gce8cmd)) {
 			$gce8cmd = new gce8cmd();
         }
-    $gce8cmd->setName(__($nmrel7.' ON', __FILE__));
+        $gce8cmd->setName(__($nmrel7.' ON', __FILE__));
 		$gce8cmd->setLogicalId('r7on');
-	  $gce8cmd->setEqLogic_id($this->getId());
+	    $gce8cmd->setEqLogic_id($this->getId());
 		$gce8cmd->setType('action');
 		$gce8cmd->setSubType('other');	
 		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
 		$gce8cmd->save();
 
-    $gce8cmd = $this->getCmd(null, 'r8on');
+        $gce8cmd = $this->getCmd(null, 'r8on');
 		if (!is_object($gce8cmd)) {
 			$gce8cmd = new gce8cmd();
         }
-    $gce8cmd->setName(__($nmrel8.' ON', __FILE__));
+        $gce8cmd->setName(__($nmrel8.' ON', __FILE__));
 		$gce8cmd->setLogicalId('r8on');
-	  $gce8cmd->setEqLogic_id($this->getId());
+	    $gce8cmd->setEqLogic_id($this->getId());
 		$gce8cmd->setType('action');
 		$gce8cmd->setSubType('other');	
 		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
@@ -520,6 +499,19 @@ class gce8 extends eqLogic {
 
     // Liste des commandes d'info
 
+	$info = $this->getCmd(null, 'etr1');
+  	if (!is_object($info)) {
+    	$info = new gce8Cmd();
+    	$info->setName(__('$nm1', __FILE__));
+  	}
+  	$info->setLogicalId('etr1');
+  	$info->setEqLogic_id($this->getId());
+  	$info->setType('info');
+  	$info->setSubType('string');
+  	$info->save();
+
+
+/*
     $cmd_list = array(
 			'etr1' => array(
                 'name' => __($nm1, __FILE__),
@@ -585,7 +577,7 @@ class gce8 extends eqLogic {
 		 #	$cmd->setEventOnly(1);
 		$cmd->save();
 		}
-
+*/
   }
 
   // Fonction exécutée automatiquement avant la suppression de l'équipement
