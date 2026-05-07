@@ -679,9 +679,9 @@ class gce8Cmd extends cmd {
       break;
 
       case 'r4imp' : 
-        log::add ('gce8','info','Relais 4 impuls');
+//       log::add ('gce8','info','Relais 4 impuls');
 				$mess='echo RLY41 >'.$port_carte; 
-        Log::add ('gce8', 'info', $mess)
+//        Log::add ('gce8', 'info', $mess)
 			  exec ($mess);
 			  usleep($duree_imp*1000000);
 				$mess='echo RLY40 >'.$port_carte; 
