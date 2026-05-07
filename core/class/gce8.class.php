@@ -294,12 +294,7 @@ class gce8 extends eqLogic {
 
   // Fonction exécutée automatiquement avant la mise à jour de l'équipement
   public function preUpdate() {
-         // Affectation des noms des relais 
-    $nmrel1 = $this->getconfiguration('nmrelais1');
-    if ($nmrel1 == "") {
-      $nmrel1 = "Relais 1";
-    }
- 
+
   }
 
   // Fonction exécutée automatiquement après la mise à jour de l'équipement
@@ -308,12 +303,7 @@ class gce8 extends eqLogic {
 
   // Fonction exécutée automatiquement avant la sauvegarde (création ou mise à jour) de l'équipement
   public function preSave() {
-         // Affectation des noms des relais 
-    $nmrel1 = $this->getconfiguration('nmrelais1');
-    if ($nmrel1 == "") {
-      $nmrel1 = "Relais 1";
-    }
- 
+
   }
 
   // Fonction exécutée automatiquement après la sauvegarde (création ou mise à jour) de l'équipement
@@ -331,6 +321,55 @@ class gce8 extends eqLogic {
     $refresh->save();
 
    
+      
+    // Affectation des noms des relais 
+    $nmrel1 = $this->getconfiguration('nmrelais1');
+    //if ($nmrel1 == "") {
+    //  $nmrel1 = "Relais 1";
+   // }
+
+     // commandes ON
+
+    $gce8cmd = $this->getCmd(null, 'r1on');
+		if (!is_object($gce8cmd)) {
+			$gce8cmd = new gce8cmd();
+        }
+   $gce8cmd->setName(__($nmrel1.' ON' ,__FILE__));
+		$gce8cmd->setLogicalId('r1on');
+	  $gce8cmd->setEqLogic_id($this->getId());
+		$gce8cmd->setType('action');
+		$gce8cmd->setSubType('other');	
+		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
+		$gce8cmd->save();
+
+    // Commandes OFF
+
+    $gce8cmd = $this->getCmd(null, 'r1off');
+		if (!is_object($gce8cmd)) {
+			$gce8cmd = new gce8cmd();
+		}
+    $gce8cmd->setName(__($nmrel1.' OFF',__FILE__));
+		$gce8cmd->setLogicalId('r1off');
+	  $gce8cmd->setEqLogic_id($this->getId());
+		$gce8cmd->setType('action');
+		$gce8cmd->setSubType('other');	
+		$gce8cmd->setDisplay('generic_type','LIGHT_OFF');
+		$gce8cmd->save();
+
+    // Commandes Impulsion
+
+    $gce8cmd = $this->getCmd(null, 'r1imp');
+		if (!is_object($gce8cmd)) {
+			$gce8cmd = new gce8cmd();
+		}
+    $gce8cmd->setName(__($nmrel1.' IMPULSION',__FILE__));
+		$gce8cmd->setLogicalId('r1imp');
+	  $gce8cmd->setEqLogic_id($this->getId());
+		$gce8cmd->setType('action');
+		$gce8cmd->setSubType('other');	
+		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
+		$gce8cmd->save();
+
     // Affectation des noms de retour d'état 
 
     $nm1 = 'Etat '.$nmrel1;
@@ -395,55 +434,6 @@ class gce8 extends eqLogic {
 			),
 		);
 
-
-      
-     // commandes ON
-
-    // Affectation des noms des relais 
-    $nmrel1 = $this->getconfiguration('nmrelais1');
-    if ($nmrel1 == "") {
-      $nmrel1 = "Relais 1";
-    }
-
-    $gce8cmd = $this->getCmd(null, 'r1on');
-		if (!is_object($gce8cmd)) {
-			$gce8cmd = new gce8cmd();
-        }
-   $gce8cmd->setName(__($nmrel1.' ON' ,__FILE__));
-		$gce8cmd->setLogicalId('r1on');
-	  $gce8cmd->setEqLogic_id($this->getId());
-		$gce8cmd->setType('action');
-		$gce8cmd->setSubType('other');	
-		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
-		$gce8cmd->save();
-
-    // Commandes OFF
-
-    $gce8cmd = $this->getCmd(null, 'r1off');
-		if (!is_object($gce8cmd)) {
-			$gce8cmd = new gce8cmd();
-		}
-    $gce8cmd->setName(__($nmrel1.' OFF',__FILE__));
-		$gce8cmd->setLogicalId('r1off');
-	  $gce8cmd->setEqLogic_id($this->getId());
-		$gce8cmd->setType('action');
-		$gce8cmd->setSubType('other');	
-		$gce8cmd->setDisplay('generic_type','LIGHT_OFF');
-		$gce8cmd->save();
-
-    // Commandes Impulsion
-
-    $gce8cmd = $this->getCmd(null, 'r1imp');
-		if (!is_object($gce8cmd)) {
-			$gce8cmd = new gce8cmd();
-		}
-    $gce8cmd->setName(__($nmrel1.' IMPULSION',__FILE__));
-		$gce8cmd->setLogicalId('r1imp');
-	  $gce8cmd->setEqLogic_id($this->getId());
-		$gce8cmd->setType('action');
-		$gce8cmd->setSubType('other');	
-		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
-		$gce8cmd->save();
 
 
 
