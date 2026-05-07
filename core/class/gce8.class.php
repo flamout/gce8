@@ -546,8 +546,8 @@ class gce8 extends eqLogic {
 		
 		
 	public function actionrelais ($action,$num_relais) {
-   /*     
-    //log::add ('gce8','info','commande declenchée');
+        
+
 		$port_carte=$this->getconfiguration('port_carte');
 		$nom_carte=$this->getconfiguration('name');
 		$duree_imp=$this->getconfiguration('duree_impulsion');
@@ -577,7 +577,7 @@ class gce8 extends eqLogic {
 		if ($action=="imp") {
 			if ($nbrelais=="8") {
 				$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
-        //Log::add ('gce8', 'info', $mess)
+
 			}
 			else {
 				$mess='echo S'.$num_relais.'1 >'.$port_carte;
@@ -592,8 +592,6 @@ class gce8 extends eqLogic {
 			}
 			exec ($mess);
 		}
-     */  
-  
 	}
 
 }
