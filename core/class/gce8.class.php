@@ -570,6 +570,22 @@ class gce8 extends eqLogic {
 				'order' => 8,
 			),
 		);
+		foreach ($cmd_list as $key => $cmd_info) {
+		$cmd = $this->getCmd(null, $key);
+		if (!is_object($cmd)) {
+			$cmd = new gce8Cmd();
+			$cmd->setLogicalId($key);
+			$cmd->setIsVisible(1);
+			$cmd->setOrder($cmd_info['order']);
+		}
+		$cmd->setName($cmd_info['name']);
+		$cmd->setType($cmd_info['type']);
+		$cmd->setSubType($cmd_info['subtype']);
+		$cmd->setEqLogic_id($this->getId());
+		 #	$cmd->setEventOnly(1);
+		$cmd->save();
+		}
+
   }
 
   // Fonction exécutée automatiquement avant la suppression de l'équipement
