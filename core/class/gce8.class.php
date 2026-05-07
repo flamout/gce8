@@ -502,7 +502,7 @@ class gce8 extends eqLogic {
 	$info = $this->getCmd(null, 'etr1');
   	if (!is_object($info)) {
     	$info = new gce8Cmd();
-    	$info->setName(__('$nm1', __FILE__));
+    	$info->setName(__($nm1, __FILE__));
   	}
   	$info->setLogicalId('etr1');
   	$info->setEqLogic_id($this->getId());
