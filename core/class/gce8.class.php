@@ -139,18 +139,6 @@ class gce8 extends eqLogic {
     $por = $this->getConfiguration('port_carte');
     $nbrel = $this->getConfiguration('nb_relais');
 
-    log::add ('gce8','info',$nmrel1);
-    log::add ('gce8','info',$nmrel2);
-    log::add ('gce8','info',$nmrel3);
-    log::add ('gce8','info',$nmrel4);
-    log::add ('gce8','info',$nmrel5);
-    log::add ('gce8','info',$nmrel6);
-    log::add ('gce8','info',$nmrel7);
-    log::add ('gce8','info',$nmrel8);
-    log::add ('gce8','info',$por);
-    log::add ('gce8','info',$duree);  
-    log::add ('gce8','info',$nbrel);
-
     
     if ($nmrel1 == "") {
       $nmrel1 = "Relais 1";
@@ -178,6 +166,20 @@ class gce8 extends eqLogic {
     }
 
    // test des variables 
+
+       log::add ('gce8','info',$nmrel1);
+    log::add ('gce8','info',$nmrel2);
+    log::add ('gce8','info',$nmrel3);
+    log::add ('gce8','info',$nmrel4);
+    log::add ('gce8','info',$nmrel5);
+    log::add ('gce8','info',$nmrel6);
+    log::add ('gce8','info',$nmrel7);
+    log::add ('gce8','info',$nmrel8);
+    log::add ('gce8','info',$por);
+    log::add ('gce8','info',$duree);  
+    log::add ('gce8','info',$nbrel);
+
+
 
     $refresh = $this->getCmd(null, 'refresh');
     if (!is_object($refresh)) {
@@ -545,7 +547,7 @@ class gce8 extends eqLogic {
   }
 		
 		
-	public function actionrelais ($action,$num_relais) {
+	public function actionrelais ($action,$num_relais,) {
         
 
 		$port_carte=$this->getconfiguration('port_carte');
@@ -620,7 +622,7 @@ class gce8Cmd extends cmd {
     $eqlogic = $this->getEqLogic(); //récupère l'éqlogic de la commande $this
     switch ($this->getLogicalId()) { //vérifie le logicalid de la commande
       case 'refresh': // LogicalId de la commande rafraîchir que l’on a créé dans la méthode Postsave de la classe vdm .
-        $info = $eqlogic->majinfo(); //On lance la fonction randomVdm() pour récupérer une vdm et on la stocke dans la variable $info
+        $eqlogic->majinfo(); //On lance la fonction randomVdm() pour récupérer une vdm et on la stocke dans la variable $info
         // (issu de template) $eqlogic->checkAndUpdateCmd('story', $info); //on met à jour la commande avec le LogicalId "story"  de l'eqlogic
       break;
       case 'r1on' : 
