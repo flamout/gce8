@@ -318,13 +318,7 @@ class gce8 extends eqLogic {
     $refresh->setSubType('other');
     $refresh->save();
 
-    // Affectation des noms des relais 
-
-    $nmrel1 = $this->getconfiguration('nmrelais1');
-    if ($nmrel1 == "") {
-      $nmrel1 = "Relais 1";
-    }
-
+   
     // Affectation des noms de retour d'état 
 
     $nm1 = 'Etat '.$nmrel1;
@@ -397,7 +391,12 @@ class gce8 extends eqLogic {
 		if (!is_object($gce8cmd)) {
 			$gce8cmd = new gce8cmd();
         }
-      	$gce8cmd->setName(__($nmrel1.' ON' ,__FILE__));
+     // Affectation des noms des relais 
+    $nmrel1 = $this->getconfiguration('nmrelais1');
+    if ($nmrel1 == "") {
+      $nmrel1 = "Relais 1";
+    }
+    $gce8cmd->setName(__($nmrel1.' ON' ,__FILE__));
 		$gce8cmd->setLogicalId('r1on');
 	  $gce8cmd->setEqLogic_id($this->getId());
 		$gce8cmd->setType('action');
