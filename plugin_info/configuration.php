@@ -24,7 +24,7 @@ if (!isConnect()) {
 ?>
 <form class="form-horizontal">
   <fieldset>
-    <div class="form-group">
+      <div class="form-group">
       <label class="col-md-4 control-label">{{Global param 1}}
         <sup><i class="fas fa-question-circle tooltips" title="{{Renseignez le paramètre 1 du plugin}}"></i></sup>
       </label>
