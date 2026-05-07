@@ -308,7 +308,39 @@ class gce8 extends eqLogic {
 
   // Fonction exécutée automatiquement après la sauvegarde (création ou mise à jour) de l'équipement
   public function postSave() {
+        // Affectation des noms des relais 
+    $nmrel1 = $this->getconfiguration('nmrelais1');
+    $nmrel2 = $this->getconfiguration('nmrelais2');
+    $nmrel3 = $this->getconfiguration('nmrelais3');
+    $nmrel4 = $this->getconfiguration('nmrelais4');
+    $nmrel5 = $this->getconfiguration('nmrelais5');
+    $nmrel6 = $this->getconfiguration('nmrelais6');
+    $nmrel7 = $this->getconfiguration('nmrelais7');
+    $nmrel8 = $this->getconfiguration('nmrelais8');
+
+    log::add ('gce8','info',$nmrel1);
+    log::add ('gce8','info',$nmrel2);
+    log::add ('gce8','info',$nmrel3);
+    log::add ('gce8','info',$nmrel4);
+    log::add ('gce8','info',$nmrel5);
+    log::add ('gce8','info',$nmrel6);
+    log::add ('gce8','info',$nmrel7);
+    log::add ('gce8','info',$nmrel8);
+
+
     
+    //if ($nmrel1 == "") {
+    //  $nmrel1 = "Relais 1";
+   // }
+
+   // test des variables 
+    $duree=$this->getConfiguration('duree_impulsion');
+    $por = $this->getConfiguration('port_carte');
+    $brel = $this->getConfiguration('nb_relais');
+    log::add ('gce8','info',$por);
+    log::add('gce8','info',$duree);  
+    log::add('gce8','info',$brel);
+
     $refresh = $this->getCmd(null, 'refresh');
     if (!is_object($refresh)) {
       $refresh = new gce8Cmd();
@@ -322,22 +354,6 @@ class gce8 extends eqLogic {
 
    
       
-    // Affectation des noms des relais 
-    $nmrel1 = $this->getconfiguration('nmrelais1');
-    
-    //if ($nmrel1 == "") {
-    //  $nmrel1 = "Relais 1";
-   // }
-
-   // test des variables 
-       $duree=$this->getConfiguration('duree_impulsion');
-    $por = $this->getConfiguration('port_carte');
-    $brel = $this->getConfiguration('nb_relais');
-   log::add ('gce8','info',$por);
-    log::add('gce8','info',$duree);  
-      log::add('gce8','info',$brel);
-
-       log::add ('gce8','info',$nmrel1);
 
      // commandes ON
 
@@ -345,8 +361,9 @@ class gce8 extends eqLogic {
 		if (!is_object($gce8cmd)) {
 			$gce8cmd = new gce8cmd();
         }
+    log::add ('gce8','info',$nmrel1);
     $nmrel1 = $nmrel1.'_ON';
-       log::add ('gce8','info',$nmrel1);
+    log::add ('gce8','info',$nmrel1);
     $gce8cmd->setName(__($nmrel1, __FILE__));
 		$gce8cmd->setLogicalId('r1on');
 	  $gce8cmd->setEqLogic_id($this->getId());
