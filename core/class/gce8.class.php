@@ -334,11 +334,11 @@ class gce8 extends eqLogic {
    // }
 
    // test des variables 
-    $duree=$this->getConfiguration('duree_impulsion');
+    $duree=$this->getConfiguration('duree_impulsion');  
     $por = $this->getConfiguration('port_carte');
     $brel = $this->getConfiguration('nb_relais');
     log::add ('gce8','info',$por);
-    log::add('gce8','info',$duree);  
+    log::add ('gce8','info',$duree);  
     log::add('gce8','info',$brel);
 
     $refresh = $this->getCmd(null, 'refresh');
