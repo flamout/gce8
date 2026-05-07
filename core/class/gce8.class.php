@@ -739,7 +739,7 @@ class gce8Cmd extends cmd {
 		if ($action=="imp") {
 			if ($nbrelais=="8") {
 				$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
-        Log::add ('gce8', 'info', $mess)
+        //Log::add ('gce8', 'info', $mess)
 			}
 			else {
 				$mess='echo S'.$num_relais.'1 >'.$port_carte;
