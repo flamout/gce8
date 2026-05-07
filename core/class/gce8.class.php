@@ -345,7 +345,7 @@ class gce8 extends eqLogic {
 		if (!is_object($gce8cmd)) {
 			$gce8cmd = new gce8cmd();
         }
-    $nmrel1 = $nmrel1.' ON';
+    $nmrel1 = $nmrel1 . ' ON';
        log::add ('gce8','info',$nmrel1);
     $gce8cmd->setName(__($nmrel1, __FILE__));
 		$gce8cmd->setLogicalId('r1on');
