@@ -317,7 +317,7 @@ class gce8 extends eqLogic {
     $nmrel6 = $this->getconfiguration('nmrelais6');
     $nmrel7 = $this->getconfiguration('nmrelais7');
     $nmrel8 = $this->getconfiguration('nmrelais8');
-    $duree=$this->getConfiguration('duree_impulsion');  
+    $duree = $this->getConfiguration('duree_impulsion');  
     $por = $this->getConfiguration('port_carte');
     $nbrel = $this->getConfiguration('nb_relais');
 
