@@ -136,11 +136,83 @@ $eqLogics = eqLogic::byType($plugin->getId());
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label">{{Nom du paramètre n°1}}
-									<sup><i class="fas fa-question-circle tooltips" title="{{Renseignez le paramètre n°1 de l'équipement}}"></i></sup>
+								<label class="col-sm-4 control-label">{{Durée d'impulsion}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{en secondes}}"></i></sup>
 								</label>
 								<div class="col-sm-6">
-									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="param1" placeholder="{{Paramètre n°1}}">
+									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="duree_impulsion" placeholder=0.5>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">{{Nombre de relais}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{8, 4 ou 2 selon la carte}}"></i></sup>
+								</label>
+								<div class="col-sm-6">
+									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="nb_relais" placeholder="{{8}}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">{{Relais N° 1}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Nom du relais, laisser vide pour le nom par défaut}}"></i></sup>
+								</label>
+								<div class="col-sm-6">
+									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="nmrelais1" placeholder="{{Relais 1}}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">{{Relais N° 2}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Nom du relais, laisser vide pour le nom par défaut}}"></i></sup>
+								</label>
+								<div class="col-sm-6">
+									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="nmrelais2" placeholder="{{Relais 2}}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">{{Relais N° 3}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Nom du relais, laisser vide pour le nom par défaut}}"></i></sup>
+								</label>
+								<div class="col-sm-6">
+									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="nmrelais3" placeholder="{{Relais 3}}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">{{Relais N° 4}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Nom du relais, laisser vide pour le nom par défaut}}"></i></sup>
+								</label>
+								<div class="col-sm-6">
+									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="nmrelais4" placeholder="{{Relais 4}}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">{{Relais N° 5}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Nom du relais, laisser vide pour le nom par défaut}}"></i></sup>
+								</label>
+								<div class="col-sm-6">
+									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="nmrelais5" placeholder="{{Relais 5}}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">{{Relais N° 6}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Nom du relais, laisser vide pour le nom par défaut}}"></i></sup>
+								</label>
+								<div class="col-sm-6">
+									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="nmrelais6" placeholder="{{Relais 6}}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">{{Relais N° 7}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Nom du relais, laisser vide pour le nom par défaut}}"></i></sup>
+								</label>
+								<div class="col-sm-6">
+									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="nmrelais7" placeholder="{{Relais 7}}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">{{Relais N° 8}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Nom du relais, laisser vide pour le nom par défaut}}"></i></sup>
+								</label>
+								<div class="col-sm-6">
+									<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="nmrelais8" placeholder="{{Relais 8}}">
 								</div>
 							</div>
 						</div>
