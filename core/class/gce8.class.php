@@ -502,9 +502,14 @@ class gce8Cmd extends cmd {
       break;
 
       case 'r4imp' : 
-           log::add ('gce8','info','Relais 4 impuls');
-
-        $eqLogic->actionrelais ("imp","4");    
+        log::add ('gce8','info','Relais 4 impuls');
+				$mess='echo RLY41 >'.$port_carte; 
+        Log::add ('gce8', 'info', $mess)
+			  exec ($mess);
+			  usleep($duree_imp*1000000);
+				$mess='echo RLY40 >'.$port_carte; 
+			  exec ($mess);
+	      //$eqLogic->actionrelais ("imp","4");    
     	  $eqLogic->majinfo();
       break;
 
@@ -709,7 +714,7 @@ class gce8Cmd extends cmd {
 		
 	public function actionrelais ($action,$num_relais) {
         
-    log::add ('gce8','info','commande declenchée');
+    //log::add ('gce8','info','commande declenchée');
 		$port_carte=$this->getconfiguration('port_carte');
 		$nom_carte=$this->getconfiguration('name');
 		$duree_imp=$this->getconfiguration('duree_impulsion');
