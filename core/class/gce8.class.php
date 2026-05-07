@@ -306,14 +306,7 @@ class gce8 extends eqLogic {
 
   // Fonction exécutée automatiquement après la sauvegarde (création ou mise à jour) de l'équipement
   public function postSave() {
-  }
-
-  // Fonction exécutée automatiquement avant la suppression de l'équipement
-  public function preRemove() {
-  }
-
-  // Fonction exécutée automatiquement après la suppression de l'équipement
-  public function postRemove() {
+    
     $refresh = $this->getCmd(null, 'refresh');
     if (!is_object($refresh)) {
       $refresh = new vdmCmd();
@@ -325,6 +318,15 @@ class gce8 extends eqLogic {
     $refresh->setSubType('other');
     $refresh->save();
 
+
+  }
+
+  // Fonction exécutée automatiquement avant la suppression de l'équipement
+  public function preRemove() {
+  }
+
+  // Fonction exécutée automatiquement après la suppression de l'équipement
+  public function postRemove() {
   }
 
   /*
