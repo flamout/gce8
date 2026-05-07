@@ -713,7 +713,7 @@ class gce8Cmd extends cmd {
 		
 		
 	public function actionrelais ($action,$num_relais) {
-        
+   /*     
     //log::add ('gce8','info','commande declenchée');
 		$port_carte=$this->getconfiguration('port_carte');
 		$nom_carte=$this->getconfiguration('name');
@@ -759,7 +759,7 @@ class gce8Cmd extends cmd {
 			}
 			exec ($mess);
 		}
-       
+     */  
   
 	}
 
