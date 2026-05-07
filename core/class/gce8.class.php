@@ -99,6 +99,191 @@ class gce8 extends eqLogic {
 
   /*     * *********************Méthodes d'instance************************* */
 
+  // Fonction de mise a jour 
+
+ 	public function majinfo() {
+		include "php_serial.class.php";      
+		// Let's start the class
+		$serial = new phpSerial;
+		// First we must specify the device. This works on both linux and windows (if
+		// your linux serial device is /dev/ttyS0 for COM1, etc)
+		$serial->deviceSet($this->getconfiguration('port_carte'));
+		$nom_carte=$this->getconfiguration('name');
+		$nbrelais=$this->getconfiguration('nb_relais');
+		  /* We can change the baud rate, parity, length, stop bits, flow control
+      $serial->confBaudRate(9600);
+			$serial->confParity("none");
+			$serial->confCharacterLength(8);
+			$serial->confStopBits(1);
+			$serial->confFlowControl("none");
+			Then we need to open it
+      */ 
+		$serial->deviceOpen();
+
+		 // To write into
+    if ($nbrelais=="8") { // traitement pour carte 8 relais 
+	    do {
+		    $serial->sendMessage("?RLY"); 
+		    sleep (0.200); 
+        $read = $serial->readPort(10);
+       	// If you want to change the configuration, the device must be closed
+	    } while (substr($read,0,1)=="0" || substr($read,0,1)=="1");
+				
+	    $serial->deviceClose();
+
+				  // traitement du retour
+				
+	    $listecomm=eqlogic::byid($this->getid());
+		  $nomcomm="";
+		  foreach($listecomm->getcmd() as $comm) {
+			  $nomcomm = $comm->getlogicalid();    
+			  if ( $nomcomm =='etr1') {
+				  $valrel=substr($read,1,1);
+				  $comm->setvalue ($valrel);
+				  $comm->save();
+				  $comm->event($valrel);
+			  }
+			  if ( $nomcomm =='etr2') {
+				  $valrel=substr($read,2,1);
+				  $comm->setvalue ($valrel);
+				  $comm->save();
+				  $comm->event($valrel);
+			  }
+			  if ( $nomcomm =='etr3') {
+				  $valrel=substr($read,3,1);
+				  $comm->setvalue ($valrel);
+				  $comm->save();
+				  $comm->event($valrel);
+			  }
+			  if ( $nomcomm =='etr4') {
+				  $valrel=substr($read,4,1);
+				  $comm->setvalue ($valrel);
+				  $comm->save();
+				  $comm->event($valrel);
+			  }
+			  if ( $nomcomm =='etr5') {
+				  $valrel=substr($read,5,1);
+				  $comm->setvalue ($valrel);
+				  $comm->save();
+				  $comm->event($valrel);
+			  }
+			  if ( $nomcomm =='etr6') {
+				  $valrel=substr($read,6,1);
+				  $comm->setvalue ($valrel);
+				  $comm->save();
+				  $comm->event($valrel);
+			  }
+			  if ( $nomcomm =='etr7') {
+				  $valrel=substr($read,7,1);
+				  $comm->setvalue ($valrel);
+				  $comm->save();
+				  $comm->event($valrel);
+			  }
+			  if ( $nomcomm =='etr8') {
+				  $valrel=substr($read,8,1);
+				  $comm->setvalue ($valrel);
+				  $comm->save();
+				  $comm->event($valrel);
+			  }
+		  }     
+	  }
+		
+		/* else {  // traitement pour la carte 4 relais 
+			do {
+				$serial->sendMessage("?"); 
+				sleep (0.200); 
+           		$read = $serial->readPort(10);
+           		// If you want to change the configuration, the device must be closed
+			} while (substr($read,0,1)=="0" || substr($read,0,1)=="1" || substr($read,0,1)=="S");
+			$serial->deviceClose();
+			 // traitement du retour
+				
+			$listecomm=eqlogic::byid($this->getid());
+			$nomcomm="";
+			foreach($listecomm->getcmd() as $comm) {
+				$nomcomm = $comm->getlogicalid();    
+				if ( $nomcomm =='etr1') {
+					$valrel=substr($read,1,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel)
+				}
+				if ( $nomcomm =='etr2') {
+					$valrel=substr($read,2,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel);
+				}
+				if ( $nomcomm =='etr3') {
+					$valrel=substr($read,3,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel);
+				}
+				if ( $nomcomm =='etr4') {
+					$valrel=substr($read,4,1);
+					$comm->setvalue ($valrel);
+					$comm->save();
+					$comm->event($valrel);
+				}
+			}
+		}*/
+            // Or to read from
+  }
+		
+		
+	public function actionrelais ($action,$num_relais) {
+        
+
+		$port_carte=$this->getconfiguration('port_carte');
+		$nom_carte=$this->getconfiguration('name');
+		$duree_imp=$this->getconfiguration('duree_impulsion');
+		$nbrelais=$this->getconfiguration('nb_relais');
+
+		if ($action=="on") {
+			if ($nbrelais=="8") {
+				$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
+			}
+			else {
+				$mess='echo S'.$num_relais.'1 >'.$port_carte;
+			}
+			exec ($mess);
+			//print $mess.$port_carte;
+		}
+
+		if ($action=="off") {
+			if ($nbrelais=="8") {
+				$mess='echo RLY'.$num_relais.'0 >'.$port_carte; 
+			}
+			else {
+				$mess='echo S'.$num_relais.'0 >'.$port_carte;
+			}
+			exec ($mess);
+		}
+
+		if ($action=="imp") {
+			if ($nbrelais=="8") {
+				$mess='echo RLY'.$num_relais.'1 >'.$port_carte; 
+			}
+			else {
+				$mess='echo S'.$num_relais.'1 >'.$port_carte;
+			}
+			exec ($mess);
+			usleep($duree_imp*1000000);
+			if ($nbrelais=="8") {
+				$mess='echo RLY'.$num_relais.'0 >'.$port_carte; 
+			}
+			else {
+				$mess='echo S'.$num_relais.'0 >'.$port_carte;
+			}
+			exec ($mess);
+		}
+       
+  
+	}
+
+
+
   // Fonction exécutée automatiquement avant la création de l'équipement
   public function preInsert() {
   }
@@ -129,6 +314,17 @@ class gce8 extends eqLogic {
 
   // Fonction exécutée automatiquement après la suppression de l'équipement
   public function postRemove() {
+    $refresh = $this->getCmd(null, 'refresh');
+    if (!is_object($refresh)) {
+      $refresh = new vdmCmd();
+      $refresh->setName(__('Rafraichir', __FILE__));
+    }
+    $refresh->setEqLogic_id($this->getId());
+    $refresh->setLogicalId('refresh');
+    $refresh->setType('action');
+    $refresh->setSubType('other');
+    $refresh->save();
+
   }
 
   /*
@@ -171,6 +367,14 @@ class gce8Cmd extends cmd {
 
   // Exécution d'une commande
   public function execute($_options = array()) {
+    $eqlogic = $this->getEqLogic(); //récupère l'éqlogic de la commande $this
+    switch ($this->getLogicalId()) { //vérifie le logicalid de la commande
+      case 'refresh': // LogicalId de la commande rafraîchir que l’on a créé dans la méthode Postsave de la classe vdm .
+        $info = $eqlogic->majinfo(); //On lance la fonction randomVdm() pour récupérer une vdm et on la stocke dans la variable $info
+        // (issu de template) $eqlogic->checkAndUpdateCmd('story', $info); //on met à jour la commande avec le LogicalId "story"  de l'eqlogic
+      break;
+    }
+
   }
 
   /*     * **********************Getteur Setteur*************************** */
