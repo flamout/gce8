@@ -334,9 +334,9 @@ class gce8 extends eqLogic {
     log::add ('gce8','info',$nbrel);
 
     
-    //if ($nmrel1 == "") {
-    //  $nmrel1 = "Relais 1";
-   // }
+    if ($nmrel1 == "") {
+      $nmrel1 = "Relais 1";
+    }
 
    // test des variables 
 
@@ -360,10 +360,10 @@ class gce8 extends eqLogic {
 		if (!is_object($gce8cmd)) {
 			$gce8cmd = new gce8cmd();
         }
-    log::add ('gce8','info',$nmrel1);
-    $nmrel1 = $nmrel1.'_ON';
-    log::add ('gce8','info',$nmrel1);
-    $gce8cmd->setName(__($nmrel1, __FILE__));
+    //log::add ('gce8','info',$nmrel1);
+    
+    //log::add ('gce8','info',$nmrel1);
+    $gce8cmd->setName(__($nmrel1.' ON', __FILE__));
 		$gce8cmd->setLogicalId('r1on');
 	  $gce8cmd->setEqLogic_id($this->getId());
 		$gce8cmd->setType('action');
@@ -523,6 +523,126 @@ class gce8Cmd extends cmd {
         $info = $eqlogic->majinfo(); //On lance la fonction randomVdm() pour récupérer une vdm et on la stocke dans la variable $info
         // (issu de template) $eqlogic->checkAndUpdateCmd('story', $info); //on met à jour la commande avec le LogicalId "story"  de l'eqlogic
       break;
+      case 'r1on' : 
+        $eqLogic->actionrelais("on","1");    
+        $eqLogic->majinfo();
+      break;
+
+      case 'r1off' :
+        $eqLogic->actionrelais ("off","1");    
+        $eqLogic->majinfo();
+      break;
+
+      case 'r1imp' : 
+        $eqLogic->actionrelais ("imp","1");    
+    	  $eqLogic->majinfo();
+      break;
+
+      case 'r2on' : 
+        $eqLogic->actionrelais("on","2");    
+        $eqLogic->majinfo();
+      break;
+
+      case 'r2off' : 
+        $eqLogic->actionrelais ("off","2");    
+    	  $eqLogic->majinfo();
+      break;
+
+      case 'r2imp' : 
+        $eqLogic->actionrelais ("imp","2");    
+    	  $eqLogic->majinfo();
+      break;
+
+      case 'r3on' : 
+        $eqLogic->actionrelais("on","3");    
+        $eqLogic->majinfo();
+      break;
+
+      case 'r3off' : 
+        $eqLogic->actionrelais ("off","3");    
+    	  $eqLogic->majinfo();
+      break;
+
+      case 'r3imp' : 
+        $eqLogic->actionrelais ("imp","3");    
+    	  $eqLogic->majinfo();
+      break;
+
+      case 'r4on' : 
+        $eqLogic->actionrelais("on","4");    
+        $eqLogic->majinfo();
+      break;
+
+      case 'r4off' : 
+        $eqLogic->actionrelais ("off","4");    
+    	  $eqLogic->majinfo();
+      break;
+
+      case 'r4imp' : 
+        $eqLogic->actionrelais ("imp","4");    
+    	  $eqLogic->majinfo();
+      break;
+
+      case 'r5on' : 
+        $eqLogic->actionrelais("on","5");    
+        $eqLogic->majinfo();
+      break;
+
+      case 'r5off' : 
+        $eqLogic->actionrelais ("off","5");    
+    	  $eqLogic->majinfo();
+      break;
+
+      case 'r5imp' : 
+        $eqLogic->actionrelais ("imp","5");    
+    	  $eqLogic->majinfo();
+      break;
+
+      case 'r6on' : 
+        $eqLogic->actionrelais("on","6");    
+        $eqLogic->majinfo();
+      break;
+
+      case 'r6off' : 
+        $eqLogic->actionrelais ("off","6");    
+    	  $eqLogic->majinfo();
+      break;
+
+      case 'r6imp' : 
+        $eqLogic->actionrelais ("imp","6");    
+  	    $eqLogic->majinfo();
+      break;
+
+      case 'r7on' : 
+        $eqLogic->actionrelais("on","7");    
+        $eqLogic->majinfo();
+        break;
+
+      case 'r7off' : 
+        $eqLogic->actionrelais ("off","7");    
+   	    $eqLogic->majinfo();
+      break;
+
+      case 'r7imp' : 
+        $eqLogic->actionrelais ("imp","7");    
+   	    $eqLogic->majinfo();
+      break;
+
+      case 'r8on' : 
+        $eqLogic->actionrelais("on","8");    
+        $eqLogic->majinfo();
+      break;
+
+      case 'r8off' : 
+        $eqLogic->actionrelais ("off","8");    
+   	    $eqLogic->majinfo();
+      break;
+
+      case 'r8imp' : 
+        $eqLogic->actionrelais ("imp","8");    
+   	    $eqLogic->majinfo();
+      break;
+
     }
 
   }
