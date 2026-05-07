@@ -323,10 +323,21 @@ class gce8 extends eqLogic {
    
       
     // Affectation des noms des relais 
-    $nmrel1 = $this->getconfiguration('nmrelais1', 'Relais 1');
+    $nmrel1 = $this->getconfiguration('nmrelais1');
+    
     //if ($nmrel1 == "") {
     //  $nmrel1 = "Relais 1";
    // }
+
+   // test des variables 
+       $duree=$this->getConfiguration('duree_impulsion');
+    $por = $this->getConfiguration('port_carte');
+    $brel = $this->getConfiguration('nb_relais');
+   log::add ('gce8','info',$por);
+    log::add('gce8','info',$duree);  
+      log::add('gce8','info',$brel);
+
+       log::add ('gce8','info',$nmrel1);
 
      // commandes ON
 
