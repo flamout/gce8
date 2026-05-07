@@ -309,7 +309,7 @@ class gce8 extends eqLogic {
     
     $refresh = $this->getCmd(null, 'refresh');
     if (!is_object($refresh)) {
-      $refresh = new vdmCmd();
+      $refresh = new gce8Cmd();
       $refresh->setName(__('Rafraichir', __FILE__));
     }
     $refresh->setEqLogic_id($this->getId());
