@@ -1,20 +1,45 @@
 {
-	"id" : "gce8",
-	"name" : "GCE_Relais",
-	"description" : "GCE_Relais pilote les cartes GCE 8/4/2 relais sur port USB",
-	"licence" : "AGPL",
-	"author" : "flamout",
-	"require" : "4.4",
-	"category" : "home automation protocol",
-	"hasDependency" : false,
-	"hasOwnDeamon" : false,
-	"maxDependancyInstallTime" : 0,
+	"id": "gce8",
+	"name": "Cartes GCE USB Relais",
+	"pluginVersion": "0.1",
+	"description": {
+		"fr_FR": "Plugin permettant de piloter les cartes GCE 8, 4 ou 2 relais"
+	},
+	"licence": "AGPL",
+	"author": "Flamout",
+	"require": "4.2",
+	"os" : {
+		"min" : 10,
+		"max" : 12.99
+	},
+	"category": "home automation protocol",
+	"hasDependency": false,
+	"hasOwnDeamon": false,
+	"maxDependancyInstallTime": 0,
 	"changelog" : "https://flamout.github.io/gce8/docs/#language#/changelog",
 	"documentation" : "https://flamout.github.io/gce8/docs/#language#/",
 	"link" : {
 		"forum":"Lien vers le forum",
 		"video" : "Lien vers une video"
 	},
-	"language" : ["fr_FR","en_US","de_DE","sp_SP"],
-	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile","v4"]
+	"language": [
+		"fr_FR",
+		"en_US",
+		"es_ES",
+		"de_DE",
+		"ru_RU",
+		"id_ID",
+		"it_IT",
+		"ja_JP",
+		"pt_PT"
+	],
+	"compatibility": [
+		"smart",
+		"luna",
+		"atlas",
+		"rpi",
+		"docker",
+		"diy",
+		"mobile"
+	]
 }
