@@ -399,6 +399,90 @@ class gce8 extends eqLogic {
 		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
 		$gce8cmd->save();
 
+    $gce8cmd = $this->getCmd(null, 'r2imp');
+		if (!is_object($gce8cmd)) {
+			$gce8cmd = new gce8cmd();
+		}
+    $gce8cmd->setName(__($nmrel2.' IMPULSION',__FILE__));
+		$gce8cmd->setLogicalId('r2imp');
+	  $gce8cmd->setEqLogic_id($this->getId());
+		$gce8cmd->setType('action');
+		$gce8cmd->setSubType('other');	
+		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
+		$gce8cmd->save();
+
+    $gce8cmd = $this->getCmd(null, 'r3imp');
+		if (!is_object($gce8cmd)) {
+			$gce8cmd = new gce8cmd();
+		}
+    $gce8cmd->setName(__($nmrel3.' IMPULSION',__FILE__));
+		$gce8cmd->setLogicalId('r3imp');
+	  $gce8cmd->setEqLogic_id($this->getId());
+		$gce8cmd->setType('action');
+		$gce8cmd->setSubType('other');	
+		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
+		$gce8cmd->save();
+
+    $gce8cmd = $this->getCmd(null, 'r4imp');
+		if (!is_object($gce8cmd)) {
+			$gce8cmd = new gce8cmd();
+		}
+    $gce8cmd->setName(__($nmrel4.' IMPULSION',__FILE__));
+		$gce8cmd->setLogicalId('r4imp');
+	  $gce8cmd->setEqLogic_id($this->getId());
+		$gce8cmd->setType('action');
+		$gce8cmd->setSubType('other');	
+		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
+		$gce8cmd->save();
+
+    $gce8cmd = $this->getCmd(null, 'r5imp');
+		if (!is_object($gce8cmd)) {
+			$gce8cmd = new gce8cmd();
+		}
+    $gce8cmd->setName(__($nmrel5.' IMPULSION',__FILE__));
+		$gce8cmd->setLogicalId('r5imp');
+	  $gce8cmd->setEqLogic_id($this->getId());
+		$gce8cmd->setType('action');
+		$gce8cmd->setSubType('other');	
+		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
+		$gce8cmd->save();
+
+    $gce8cmd = $this->getCmd(null, 'r6imp');
+		if (!is_object($gce8cmd)) {
+			$gce8cmd = new gce8cmd();
+		}
+    $gce8cmd->setName(__($nmrel6.' IMPULSION',__FILE__));
+		$gce8cmd->setLogicalId('r6imp');
+	  $gce8cmd->setEqLogic_id($this->getId());
+		$gce8cmd->setType('action');
+		$gce8cmd->setSubType('other');	
+		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
+		$gce8cmd->save();
+
+    $gce8cmd = $this->getCmd(null, 'r7imp');
+		if (!is_object($gce8cmd)) {
+			$gce8cmd = new gce8cmd();
+		}
+    $gce8cmd->setName(__($nmrel7.' IMPULSION',__FILE__));
+		$gce8cmd->setLogicalId('r7imp');
+	  $gce8cmd->setEqLogic_id($this->getId());
+		$gce8cmd->setType('action');
+		$gce8cmd->setSubType('other');	
+		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
+		$gce8cmd->save();
+
+    $gce8cmd = $this->getCmd(null, 'r8imp');
+		if (!is_object($gce8cmd)) {
+			$gce8cmd = new gce8cmd();
+		}
+    $gce8cmd->setName(__($nmrel8.' IMPULSION',__FILE__));
+		$gce8cmd->setLogicalId('r8imp');
+	  $gce8cmd->setEqLogic_id($this->getId());
+		$gce8cmd->setType('action');
+		$gce8cmd->setSubType('other');	
+		$gce8cmd->setDisplay('generic_type','LIGHT_ON');
+		$gce8cmd->save();
+
     // Affectation des noms de retour d'état 
 
     $nm1 = 'Etat '.$nmrel1;
