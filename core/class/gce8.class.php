@@ -317,6 +317,9 @@ class gce8 extends eqLogic {
     $nmrel6 = $this->getconfiguration('nmrelais6');
     $nmrel7 = $this->getconfiguration('nmrelais7');
     $nmrel8 = $this->getconfiguration('nmrelais8');
+    $duree=$this->getConfiguration('duree_impulsion');  
+    $por = $this->getConfiguration('port_carte');
+    $nbrel = $this->getConfiguration('nb_relais');
 
     log::add ('gce8','info',$nmrel1);
     log::add ('gce8','info',$nmrel2);
@@ -326,7 +329,9 @@ class gce8 extends eqLogic {
     log::add ('gce8','info',$nmrel6);
     log::add ('gce8','info',$nmrel7);
     log::add ('gce8','info',$nmrel8);
-
+    log::add ('gce8','info',$por);
+    log::add ('gce8','info',$duree);  
+    log::add('gce8','info',$nbrel);
 
     
     //if ($nmrel1 == "") {
@@ -334,12 +339,6 @@ class gce8 extends eqLogic {
    // }
 
    // test des variables 
-    $duree=$this->getConfiguration('duree_impulsion');  
-    $por = $this->getConfiguration('port_carte');
-    $brel = $this->getConfiguration('nb_relais');
-    log::add ('gce8','info',$por);
-    log::add ('gce8','info',$duree);  
-    log::add('gce8','info',$brel);
 
     $refresh = $this->getCmd(null, 'refresh');
     if (!is_object($refresh)) {
